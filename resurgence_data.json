@@ -1,0 +1,306 @@
+{
+  "updated_at": "2026-06-27T23:28:23.158Z",
+  "data": [
+    {
+      "name": "Nidus Prime",
+      "total_appearances": 1,
+      "last_date": "2025-04-10",
+      "days_absent": 443,
+      "score": 886
+    },
+    {
+      "name": "Baruuk Prime",
+      "total_appearances": 1,
+      "last_date": "2025-07-03",
+      "days_absent": 359,
+      "score": 718
+    },
+    {
+      "name": "Revenant Prime",
+      "total_appearances": 1,
+      "last_date": "2025-07-03",
+      "days_absent": 359,
+      "score": 718
+    },
+    {
+      "name": "Limbo Prime",
+      "total_appearances": 5,
+      "last_date": "2025-02-13",
+      "days_absent": 499,
+      "score": 598.8
+    },
+    {
+      "name": "Banshee Prime",
+      "total_appearances": 3,
+      "last_date": "2025-05-08",
+      "days_absent": 415,
+      "score": 553.33
+    },
+    {
+      "name": "Mirage Prime",
+      "total_appearances": 3,
+      "last_date": "2025-05-08",
+      "days_absent": 415,
+      "score": 553.33
+    },
+    {
+      "name": "Gara Prime",
+      "total_appearances": 4,
+      "last_date": "2025-07-31",
+      "days_absent": 331,
+      "score": 413.75
+    },
+    {
+      "name": "Titania Prime",
+      "total_appearances": 4,
+      "last_date": "2025-07-31",
+      "days_absent": 331,
+      "score": 413.75
+    },
+    {
+      "name": "Hildryn Prime",
+      "total_appearances": 1,
+      "last_date": "2025-12-18",
+      "days_absent": 191,
+      "score": 382
+    },
+    {
+      "name": "Wisp Prime",
+      "total_appearances": 1,
+      "last_date": "2025-12-18",
+      "days_absent": 191,
+      "score": 382
+    },
+    {
+      "name": "Chroma Prime",
+      "total_appearances": 3,
+      "last_date": "2025-09-25",
+      "days_absent": 275,
+      "score": 366.67
+    },
+    {
+      "name": "Excalibur Prime",
+      "total_appearances": 3,
+      "last_date": "2025-09-25",
+      "days_absent": 275,
+      "score": 366.67
+    },
+    {
+      "name": "Zephyr Prime",
+      "total_appearances": 3,
+      "last_date": "2025-09-25",
+      "days_absent": 275,
+      "score": 366.67
+    },
+    {
+      "name": "Nezha Prime",
+      "total_appearances": 3,
+      "last_date": "2025-11-20",
+      "days_absent": 219,
+      "score": 292
+    },
+    {
+      "name": "Octavia Prime",
+      "total_appearances": 3,
+      "last_date": "2025-11-20",
+      "days_absent": 219,
+      "score": 292
+    },
+    {
+      "name": "Mag Prime",
+      "total_appearances": 7,
+      "last_date": "2025-10-23",
+      "days_absent": 247,
+      "score": 282.29
+    },
+    {
+      "name": "Garuda Prime",
+      "total_appearances": 3,
+      "last_date": "2026-02-19",
+      "days_absent": 128,
+      "score": 170.67
+    },
+    {
+      "name": "Harrow Prime",
+      "total_appearances": 3,
+      "last_date": "2026-02-19",
+      "days_absent": 128,
+      "score": 170.67
+    },
+    {
+      "name": "Khora Prime",
+      "total_appearances": 3,
+      "last_date": "2026-02-19",
+      "days_absent": 128,
+      "score": 170.67
+    },
+    {
+      "name": "Ember Prime",
+      "total_appearances": 5,
+      "last_date": "2026-02-19",
+      "days_absent": 128,
+      "score": 153.6
+    },
+    {
+      "name": "Inaros Prime",
+      "total_appearances": 5,
+      "last_date": "2026-02-19",
+      "days_absent": 128,
+      "score": 153.6
+    },
+    {
+      "name": "Valkyr Prime",
+      "total_appearances": 5,
+      "last_date": "2026-02-19",
+      "days_absent": 128,
+      "score": 153.6
+    },
+    {
+      "name": "Ash Prime",
+      "total_appearances": 6,
+      "last_date": "2026-02-19",
+      "days_absent": 128,
+      "score": 149.33
+    },
+    {
+      "name": "Ivara Prime",
+      "total_appearances": 6,
+      "last_date": "2026-02-19",
+      "days_absent": 128,
+      "score": 149.33
+    },
+    {
+      "name": "Saryn Prime",
+      "total_appearances": 6,
+      "last_date": "2026-02-19",
+      "days_absent": 128,
+      "score": 149.33
+    },
+    {
+      "name": "Frost Prime",
+      "total_appearances": 7,
+      "last_date": "2026-02-19",
+      "days_absent": 128,
+      "score": 146.29
+    },
+    {
+      "name": "Hydroid Prime",
+      "total_appearances": 7,
+      "last_date": "2026-02-19",
+      "days_absent": 128,
+      "score": 146.29
+    },
+    {
+      "name": "Nekros Prime",
+      "total_appearances": 7,
+      "last_date": "2026-02-19",
+      "days_absent": 128,
+      "score": 146.29
+    },
+    {
+      "name": "Loki Prime",
+      "total_appearances": 8,
+      "last_date": "2026-02-19",
+      "days_absent": 128,
+      "score": 144
+    },
+    {
+      "name": "Odonata Prime",
+      "total_appearances": 8,
+      "last_date": "2026-02-19",
+      "days_absent": 128,
+      "score": 144
+    },
+    {
+      "name": "Volt Prime",
+      "total_appearances": 8,
+      "last_date": "2026-02-19",
+      "days_absent": 128,
+      "score": 144
+    },
+    {
+      "name": "Mesa Prime",
+      "total_appearances": 9,
+      "last_date": "2026-02-19",
+      "days_absent": 128,
+      "score": 142.22
+    },
+    {
+      "name": "Oberon Prime",
+      "total_appearances": 10,
+      "last_date": "2026-02-19",
+      "days_absent": 128,
+      "score": 140.8
+    },
+    {
+      "name": "Atlas Prime",
+      "total_appearances": 5,
+      "last_date": "2026-03-19",
+      "days_absent": 100,
+      "score": 120
+    },
+    {
+      "name": "Vauban Prime",
+      "total_appearances": 6,
+      "last_date": "2026-03-19",
+      "days_absent": 100,
+      "score": 116.67
+    },
+    {
+      "name": "Nova Prime",
+      "total_appearances": 7,
+      "last_date": "2026-04-16",
+      "days_absent": 72,
+      "score": 0
+    },
+    {
+      "name": "Trinity Prime",
+      "total_appearances": 8,
+      "last_date": "2026-04-16",
+      "days_absent": 72,
+      "score": 0
+    },
+    {
+      "name": "Gauss Prime",
+      "total_appearances": 1,
+      "last_date": "2026-05-14",
+      "days_absent": 44,
+      "score": 0
+    },
+    {
+      "name": "Grendel Prime",
+      "total_appearances": 1,
+      "last_date": "2026-05-14",
+      "days_absent": 44,
+      "score": 0
+    },
+    {
+      "name": "Nyx Prime",
+      "total_appearances": 7,
+      "last_date": "2026-06-11",
+      "days_absent": 16,
+      "score": 0
+    },
+    {
+      "name": "Rhino Prime",
+      "total_appearances": 10,
+      "last_date": "2026-06-11",
+      "days_absent": 16,
+      "score": 0
+    },
+    {
+      "name": "Equinox Prime",
+      "total_appearances": 7,
+      "last_date": "2026-07-09",
+      "days_absent": -12,
+      "score": 0
+    },
+    {
+      "name": "Wukong Prime",
+      "total_appearances": 7,
+      "last_date": "2026-07-09",
+      "days_absent": -12,
+      "score": 0
+    }
+  ]
+}
