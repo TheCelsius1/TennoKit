@@ -1,4 +1,4 @@
-const API_BASE = '/api';
+const API_BASE = 'https://api.warframe.market/v1';
 const ASSETS_BASE = 'https://warframe.market/static/assets';
 
 // DOM Elements
@@ -78,7 +78,12 @@ function isWeapon(item) {
 
 async function init() {
     try {
-        const res = await fetch(`${API_BASE}/items`);
+        const res = await fetch(`${API_BASE}/items`, {
+            headers: {
+                'Language': 'en',
+                'Platform': 'pc'
+            }
+        });
         const data = await res.json();
         
         // Filter and map weapons
@@ -177,8 +182,8 @@ async function startPriceFetchQueue(force = false) {
                 
                 const fetchPromises = platformsToFetch.map(plat => {
                     return rateLimiter.add(async () => {
-                        const res = await fetch(`${API_BASE}/orders/item/${weapon.id}`, {
-                            headers: { 'x-platform': plat }
+                        const res = await fetch(`${API_BASE}/items/${weapon.id}/orders`, {
+                            headers: { 'Platform': plat, 'Language': 'en' }
                         });
                         const data = await res.json();
                         if (!data || !data.data) return [];
@@ -248,8 +253,8 @@ async function refreshSingleItem(urlName, event) {
         
         const fetchPromises = platformsToFetch.map(plat => {
             return rateLimiter.add(async () => {
-                const res = await fetch(`${API_BASE}/orders/item/${weapon.id}`, {
-                    headers: { 'x-platform': plat }
+                const res = await fetch(`${API_BASE}/items/${weapon.id}/orders`, {
+                    headers: { 'Platform': plat, 'Language': 'en' }
                 });
                 const data = await res.json();
                 if (!data || !data.data) return [];
