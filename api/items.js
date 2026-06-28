@@ -11,11 +11,14 @@ module.exports = async function handler(req, res) {
     }
 
     try {
+        const fetchHeaders = { ...req.headers };
+        delete fetchHeaders.host;
+        delete fetchHeaders.connection;
+        fetchHeaders['Language'] = 'en';
+        fetchHeaders['Accept'] = 'application/json';
+
         const response = await fetch('https://api.warframe.market/v1/items', {
-            headers: {
-                'Language': 'en',
-                'Accept': 'application/json'
-            }
+            headers: fetchHeaders
         });
         const data = await response.json();
         res.status(200).json(data);

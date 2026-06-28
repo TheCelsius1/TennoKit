@@ -13,11 +13,14 @@ module.exports = async function handler(req, res) {
     if (!url_name) return res.status(400).json({ error: 'Missing url_name parameter' });
 
     try {
+        const fetchHeaders = { ...req.headers };
+        delete fetchHeaders.host;
+        delete fetchHeaders.connection;
+        fetchHeaders['Language'] = 'en';
+        fetchHeaders['Accept'] = 'application/json';
+
         const response = await fetch(`https://api.warframe.market/v1/items/${url_name}/orders`, {
-            headers: {
-                'Language': 'en',
-                'Accept': 'application/json'
-            }
+            headers: fetchHeaders
         });
         const data = await response.json();
         res.status(200).json(data);
