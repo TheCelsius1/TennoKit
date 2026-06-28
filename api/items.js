@@ -11,11 +11,16 @@ module.exports = async function handler(req, res) {
     }
 
     try {
-        const fetchHeaders = { ...req.headers };
-        delete fetchHeaders.host;
-        delete fetchHeaders.connection;
-        fetchHeaders['Language'] = 'en';
-        fetchHeaders['Accept'] = 'application/json';
+        const fetchHeaders = {
+            'Language': 'en',
+            'Accept': 'application/json',
+            'User-Agent': req.headers['user-agent'] || 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+            'Platform': req.headers['platform'] || 'pc'
+        };
+        
+        if (req.headers['accept-language']) fetchHeaders['Accept-Language'] = req.headers['accept-language'];
+        if (req.headers['sec-ch-ua']) fetchHeaders['sec-ch-ua'] = req.headers['sec-ch-ua'];
+        if (req.headers['sec-ch-ua-platform']) fetchHeaders['sec-ch-ua-platform'] = req.headers['sec-ch-ua-platform'];
 
         const response = await fetch('https://api.warframe.market/v1/items', {
             headers: fetchHeaders
