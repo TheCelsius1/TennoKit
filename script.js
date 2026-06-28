@@ -1,4 +1,4 @@
-const API_BASE = 'https://api.warframe.market/v2';
+const API_BASE = '/api';
 const ASSETS_BASE = 'https://warframe.market/static/assets';
 
 // DOM Elements
@@ -177,7 +177,7 @@ async function startPriceFetchQueue(force = false) {
                 
                 const fetchPromises = platformsToFetch.map(plat => {
                     return rateLimiter.add(async () => {
-                        const res = await fetch(`${API_BASE}/orders/item/${weapon.id}`);
+                        const res = await fetch(`${API_BASE}/prices?url_name=${weapon.id}`);
                         const data = await res.json();
                         if (!data || !data.data) return [];
                         
@@ -245,7 +245,7 @@ async function refreshSingleItem(urlName, event) {
         
         const fetchPromises = platformsToFetch.map(plat => {
             return rateLimiter.add(async () => {
-                const res = await fetch(`${API_BASE}/orders/item/${weapon.id}`);
+                const res = await fetch(`${API_BASE}/prices?url_name=${weapon.id}`);
                 const data = await res.json();
                 if (!data || !data.data) return [];
                 
