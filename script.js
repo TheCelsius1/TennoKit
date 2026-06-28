@@ -1,4 +1,4 @@
-const API_BASE = 'https://api.warframe.market/v1';
+const API_BASE = 'https://api.warframe.market/v2';
 const ASSETS_BASE = 'https://warframe.market/static/assets';
 
 // DOM Elements
@@ -177,14 +177,13 @@ async function startPriceFetchQueue(force = false) {
                 
                 const fetchPromises = platformsToFetch.map(plat => {
                     return rateLimiter.add(async () => {
-                        const res = await fetch(`${API_BASE}/items/${weapon.id}/orders`);
+                        const res = await fetch(`${API_BASE}/orders/item/${weapon.id}`);
                         const data = await res.json();
                         if (!data || !data.data) return [];
                         
                         return data.data.filter(order => {
                             if (order.type !== 'sell') return false;
-                            if (order.user.status !== 'ingame') return false;
-                            if (crossplayCheckbox.checked && plat !== 'pc' && !order.user.crossplay) return false;
+                            if (order.user && order.user.status !== 'ingame') return false;
                             return true;
                         });
                     });
@@ -246,14 +245,13 @@ async function refreshSingleItem(urlName, event) {
         
         const fetchPromises = platformsToFetch.map(plat => {
             return rateLimiter.add(async () => {
-                const res = await fetch(`${API_BASE}/items/${weapon.id}/orders`);
+                const res = await fetch(`${API_BASE}/orders/item/${weapon.id}`);
                 const data = await res.json();
                 if (!data || !data.data) return [];
                 
                 return data.data.filter(order => {
                     if (order.type !== 'sell') return false;
-                    if (order.user.status !== 'ingame') return false;
-                    if (crossplayCheckbox.checked && plat !== 'pc' && !order.user.crossplay) return false;
+                    if (order.user && order.user.status !== 'ingame') return false;
                     return true;
                 });
             });
@@ -566,18 +564,38 @@ tabBtns.forEach(btn => {
 async function loadPredictions() {
     const grid = document.getElementById('predictions-grid');
     try {
-        const response = await fetch(`/resurgence_data.json?t=${new Date().getTime()}`);
-        if (!response.ok) throw new Error('Data not found');
-        const data = await response.json();
+        // Fetch predictions data and item catalog in parallel
+        const [predResponse, itemsResponse] = await Promise.all([
+            fetch(`/resurgence_data.json?t=${new Date().getTime()}`),
+            fetch(`${API_BASE}/items`)
+        ]);
+        
+        if (!predResponse.ok) throw new Error('Prediction data not found');
+        const data = await predResponse.json();
+        
+        // Build a lookup map for item images from the v2 API
+        let imageMap = {};
+        try {
+            const itemsData = await itemsResponse.json();
+            if (itemsData && itemsData.data) {
+                itemsData.data.forEach(item => {
+                    if (item.i18n && item.i18n.en && item.i18n.en.name && item.i18n.en.thumb) {
+                        imageMap[item.i18n.en.name] = ASSETS_BASE + '/' + item.i18n.en.thumb;
+                    }
+                });
+            }
+        } catch (e) {
+            console.warn('Could not load item images for predictions:', e);
+        }
         
         window.predictionsLoaded = true;
         
         grid.innerHTML = '';
         
         data.data.forEach((pred, index) => {
-            // Find corresponding item in our catalog to get its image
-            const catalogItem = window.weapons && window.weapons.find(w => w.name && w.name.includes(pred.name));
-            const imageSrc = catalogItem ? catalogItem.thumb : '';
+            // Look up image: try exact "Name Prime Set" match first, then just "Name Prime"
+            const setName = pred.name + ' Set';
+            const imageSrc = imageMap[setName] || imageMap[pred.name] || '';
             
             // Format date
             const date = new Date(pred.last_date);
@@ -597,7 +615,7 @@ async function loadPredictions() {
             card.innerHTML = `
                 <div class="pred-header">
                     <span style="font-size: 1.5rem; font-weight: bold; color: var(--text-muted);">#${index + 1}</span>
-                    <img src="${imageSrc}" alt="${pred.name}" class="pred-image" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM1NTUiIHN0cm9rZS13aWR0aD0iMiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCI+PHBhdGggZD0iTTIyIDEybC0xMCAxMEwyIDEyMTItMTBsMTAgMTB6Ii8+PC9zdmc+'">
+                    <img src="${imageSrc}" alt="${pred.name}" class="pred-image" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM1NTUiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNMjIgMTJsLTEwIDEwTDIgMTJNMTItMTBsMTAgMTB6Ii8+PC9zdmc+'">
                     <div class="pred-title">${pred.name}</div>
                 </div>
                 <div class="pred-score" title="Puntuación de Prioridad (P)">Puntuación: ${scoreLabel}</div>
